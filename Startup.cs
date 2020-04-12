@@ -1,4 +1,4 @@
-﻿using Etch.OrchardCore.ContentPermissions.Drivers;
+using Etch.OrchardCore.ContentPermissions.Drivers;
 using Etch.OrchardCore.ContentPermissions.Models;
 using Etch.OrchardCore.ContentPermissions.Settings;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,9 +13,11 @@ namespace Etch.OrchardCore.ContentPermissions
     public class Startup : StartupBase
     {
         public override void ConfigureServices(IServiceCollection services)
-        {
-            services.AddScoped<IContentPartDisplayDriver, ContentPermissionsDisplay>();
-            services.AddContentPart<ContentPermissionsPart>();
+        {         
+            
+            services.AddContentPart<ContentPermissionsPart>()
+                 .UseDisplayDriver<ContentPermissionsDisplay>()
+                ;
 
             services.AddScoped<IContentTypePartDefinitionDisplayDriver, ContentPermissionsPartSettingsDisplayDriver>();
 
